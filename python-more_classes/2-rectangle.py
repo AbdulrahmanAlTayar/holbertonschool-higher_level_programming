@@ -3,7 +3,8 @@
 
 
 class Rectangle:
-    """Rectangle class with private width/height and methods for area and perimeter"""
+    """Rectangle class with private width/height 
+    and methods for area and perimeter"""
 
     def __init__(self, width=0, height=0):
         self.width = width
