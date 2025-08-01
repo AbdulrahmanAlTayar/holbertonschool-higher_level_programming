@@ -68,7 +68,7 @@ class Rectangle:
 
     def __del__(self):
         """Print a message when the rectangle is deleted"""
-        print("rectangle deleted...")
+        print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
 
     @staticmethod
