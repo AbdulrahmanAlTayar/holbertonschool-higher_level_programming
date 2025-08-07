@@ -1,0 +1,62 @@
+"""
+>>> import sys
+>>> sys.path.append('..')
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
+>>> bg.area()
+Traceback (most recent call last):
+...
+Exception: area() is not implemented
+
+>>> bg.integer_validator()
+Traceback (most recent call last):
+...
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+>>> bg.integer_validator('dfs')
+Traceback (most recent call last):
+...
+TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+>>> bg.integer_validator('width', 9)
+>>> bg.integer_validator('radius', 'fds')
+Traceback (most recent call last):
+...
+TypeError: radius must be an integer
+
+>>> bg.integer_validator('radius', True)
+Traceback (most recent call last):
+...
+TypeError: radius must be an integer
+
+>>> bg.integer_validator('radius', None)
+Traceback (most recent call last):
+...
+TypeError: radius must be an integer
+
+>>> bg.integer_validator('radius', {2,3})
+Traceback (most recent call last):
+...
+TypeError: radius must be an integer
+
+>>> bg.integer_validator('radius', (1,2))
+Traceback (most recent call last):
+...
+TypeError: radius must be an integer
+
+>>> bg.integer_validator('radius', [3])
+Traceback (most recent call last):
+...
+TypeError: radius must be an integer
+>>> bg.integer_validator('circumference', -9)
+Traceback (most recent call last):
+...
+ValueError: circumference must be greater than 0
+
+>>> bg.integer_validator('circumference', 0)
+Traceback (most recent call last):
+...
+ValueError: circumference must be greater than 0
+
+>>> bg.integer_validator('circumference', 1)
+
+"""
