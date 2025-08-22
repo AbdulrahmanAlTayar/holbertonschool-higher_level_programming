@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""
+Simple API using http.server
+"""
 
 import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -18,7 +22,7 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
         elif self.path == "/data":
             # JSON data endpoint
             self.send_response(200)
-            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Type", "application/json")
             self.end_headers()
             data = {"name": "John", "age": 30, "city": "New York"}
             self.wfile.write(json.dumps(data).encode("utf-8"))
@@ -33,7 +37,7 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
         elif self.path == "/info":
             # Info endpoint
             self.send_response(200)
-            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Type", "application/json")
             self.end_headers()
             info = {
                 "version": "1.0",
@@ -64,3 +68,4 @@ def run(server_class=HTTPServer, handler_class=SimpleAPIHandler, port=8000):
 
 if __name__ == "__main__":
     run()
+
