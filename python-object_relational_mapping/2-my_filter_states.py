@@ -3,8 +3,8 @@
 Lists all states where name matches the argument (unsafe format).
 """
 
-import MySQLdb
 import sys
+import MySQLdb
 
 
 def main():
@@ -23,7 +23,7 @@ def main():
     )
 
     cursor = db.cursor()
-    # Intentionally unsafe per task
+    # Intentionally unsafe per task: build query with format()
     query = (
         "SELECT id, name FROM states "
         "WHERE name = '{}' "
