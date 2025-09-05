@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Lists all states where name matches the argument (unsafe format).
+Displays all values in states where name matches the argument (unsafe).
 """
 
 import sys
@@ -8,33 +8,19 @@ import MySQLdb
 
 
 def main():
-    """Connect to MySQL and fetch states matching the given name."""
-    user, pwd, dbname, state_name = (
+    """Connects and fetches states where name matches the given argument."""
+    username, password, database, state_name = (
         sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
     )
-
-    db = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=user,
-        passwd=pwd,
-        db=dbname,
-        charset="utf8"
-    )
-
-    cursor = db.cursor()
-    # Intentionally unsafe per task: build query with format()
-    query = (
-        "SELECT id, name FROM states "
-        "WHERE name = '{}' "
-        "ORDER BY id ASC;"
-    ).format(state_name)
-
-    cursor.execute(query)
-    for row in cursor.fetchall():
+    db = MySQLdb.connect(host="localhost", port=3306, user=username,
+                         passwd=password, db=database, charset="utf8")
+    cur = db.cursor()
+    query = ("SELECT * FROM states WHERE BINARY name = '{}' "
+             "ORDER BY id ASC;").format(state_name)
+    cur.execute(query)
+    for row in cur.fetchall():
         print(row)
-
-    cursor.close()
+    cur.close()
     db.close()
 
 
